@@ -1,14 +1,42 @@
 # config valid only for current version of Capistrano
-lock "3.9.1"
 
-set :application, "place_api"
-set :repo_url, "git@example.com:akmerejf/place-dia-c.git"
+set :application, "place-api"
+set :branch, :master
+set :repo_url, 'git@github.com:akmerejf/place-api.git'
+
+set :pty, true
+
+# set :default_env, {
+#   'PATH' => "/home/supanonymous/.asdf/installs/ruby/2.4.1/bin:/home/supanonymous/.asdf/$PATH",
+#   'RUBY_VERSION' => 'ruby-2.4.1',
+#   'GEM_HOME'     => '/home/supanonymous/.asdf/installs/ruby/2.4.1',
+#   'GEM_PATH'     => '/home/supanonymous/.asdf/installs/ruby/2.4.1',
+#   'BUNDLE_PATH'  => '/home/supanonymous/.asdf/installs/ruby/2.4.1/bundler'
+# }
+
+# Default deploy_to directory is /var/www/my_app_name
+set :deploy_to, '/home/geessuser/deploy/place-api'
+set :rvm_ruby_version, '2.4.1'
+#s is 5
+# set :keep_releases, 5
+
+namespace :deploy do
+  task :install_dependencies do
+    on roles(:web), in: :sequence, wait: 5 do
+      within release_path do
+        execute :bundle, "--without development test"
+      end
+    end
+  end
+  after :published, :install_dependencies
+end
+
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "~/geessuser/deploy/place_api"
+# set :deploy_to, "/var/www/my_app_name"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -21,13 +49,10 @@ set :deploy_to, "~/geessuser/deploy/place_api"
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/database.yml", "config/secrets.yml"
+# append :linked_files, "config/database.yml", "config/secrets.yml"
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
-
-
-set :rvm_ruby_version, '2.4.1'
+# append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
