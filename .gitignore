@@ -15,9 +15,9 @@
 /log/*
 !/log/.keep
 /tmp
-config/secrets
+/config/secrets
 /*.sqlite3
 # Ignore encrypted secrets key file.
-config/secrets.yml.key
+/config/secrets.yml.key
 
-config/database.yml\nconfig/secrets.yml
+/config/database.yml\nconfig/secrets.yml
