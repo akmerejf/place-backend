@@ -4,7 +4,7 @@ set :application, "place-api"
 set :branch, :master
 set :repo_url, 'git@github.com:akmerejf/place-api.git'
 
-set :pty, true
+# set :pty, true
 
 # set :default_env, {
 #   'PATH' => "/home/supanonymous/.asdf/installs/ruby/2.4.1/bin:/home/supanonymous/.asdf/$PATH",
@@ -16,7 +16,9 @@ set :pty, true
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/geessuser/deploy/place-api'
+append :linked_files, "config/database.yml", "config/secrets.yml", "config/secrets.yml.key"
 set :rvm_ruby_version, '2.4.1'
+
 #s is 5
 # set :keep_releases, 5
 
