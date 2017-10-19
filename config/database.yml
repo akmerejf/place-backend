@@ -8,7 +8,7 @@ development:
   username: root
   password: root#admin
   socket: /var/run/mysqld/mysqld.sock
-test:
+test: 
   adapter: mysql2
   encoding: utf8
   pool: 5
