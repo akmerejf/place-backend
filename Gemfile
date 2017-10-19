@@ -25,8 +25,8 @@ gem 'devise', git: 'https://github.com/gogovan/devise.git', branch: 'rails-5.1'
 gem 'jwt', '~> 1.5.4'
 gem 'puma'
 gem 'rack-cors', '~> 0.4.0'
- gem "paperclip", "~> 5.0.0.beta1"
- 
+gem 'carrierwave', '~> 1.0'
+gem 'carrierwave-base64'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
