@@ -19,7 +19,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'acts-as-taggable-on', git: 'https://github.com/mbleigh/acts-as-taggable-on'
+gem 'acts-as-taggable-on', '~> 4.0'
 gem "acts_as_follower", github: "tcocca/acts_as_follower"
 gem 'devise', git: 'https://github.com/gogovan/devise.git', branch: 'rails-5.1'
 gem 'jwt', '~> 1.5.4'
@@ -27,7 +27,8 @@ gem 'puma'
 gem 'rack-cors', '~> 0.4.0'
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-base64'
-
+# gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem "mini_magick"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
