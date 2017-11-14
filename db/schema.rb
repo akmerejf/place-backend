@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171109012258) do
+ActiveRecord::Schema.define(version: 20171111204605) do
 
   create_table "comments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "body"
@@ -43,6 +43,12 @@ ActiveRecord::Schema.define(version: 20171109012258) do
     t.index ["follower_id", "follower_type"], name: "fk_follows"
   end
 
+  create_table "pictures", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image"
+  end
+
   create_table "projects", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
     t.string "slug"
@@ -53,6 +59,7 @@ ActiveRecord::Schema.define(version: 20171109012258) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
+    t.boolean "published", default: false
     t.index ["slug"], name: "index_projects_on_slug", unique: true
     t.index ["user_id"], name: "index_projects_on_user_id"
   end

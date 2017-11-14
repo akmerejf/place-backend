@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProjectsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[index show project_image]
 
   def index
     @projects = Project.all.includes(:user)
@@ -40,6 +40,11 @@ class ProjectsController < ApplicationController
     @project = Project.find_by!(slug: params[:slug])
   end
 
+  def project_image
+    @project = Project.find_by!(slug: params[:project_slug])
+    @image = @project.image
+  end
+
   def update
     @project = Project.find_by!(slug: params[:slug])
 
@@ -67,6 +72,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :body, :description, :image, tag_list: [])
+    params.require(:project).permit(:title, :body, :description, :image, :published, tag_list: [])
   end
 end

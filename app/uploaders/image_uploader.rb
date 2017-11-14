@@ -6,8 +6,9 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   storage :file
+  
   # storage :fog
-  process resize_to_fit: [800, 800]
+  process resize_to_fill: [820, 312]
 
   version :thumb do
     process resize_to_fill: [200,200]
@@ -15,7 +16,26 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.slug}"
+  end
+
+  def filename
+    "#{secure_token}.#{file.extension}" if original_filename.present?
+  end
+
+  def secure_token
+    media_original_filenames_var = :"@#{mounted_as}_original_filenames"
+
+    unless model.instance_variable_get(media_original_filenames_var)
+      model.instance_variable_set(media_original_filenames_var, {})
+    end
+
+    unless model.instance_variable_get(media_original_filenames_var).map{|k,v| k }.include? original_filename.to_sym
+      new_value = model.instance_variable_get(media_original_filenames_var).merge({"#{original_filename}": SecureRandom.uuid})
+      model.instance_variable_set(media_original_filenames_var, new_value)
+    end
+
+    model.instance_variable_get(media_original_filenames_var)[original_filename.to_sym]
   end
 
 

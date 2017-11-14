@@ -11,9 +11,13 @@ Rails.application.routes.draw do
       resource :follow, only: %i[create destroy]
     end
 
+    resources :pictures, except: %i[ new]
+
     resources :projects, param: :slug, except: %i[edit new] do
       resource :favorite, only: %i[create destroy]
       resources :comments, only: %i[create index destroy]
+
+      get 'image', to: 'projects#project_image'
       get :feed, on: :collection
     end
 
