@@ -2,7 +2,8 @@
 # ======================
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
-
+set :rails_env, "production"
+set :deploy_to, "/home/geessuser/deploy/place-api"
 server "104.236.7.68", user: "geessuser", roles: %w{app db web}
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
@@ -17,9 +18,7 @@ server "104.236.7.68", user: "geessuser", roles: %w{app db web}
 # property set. Specify the username and a domain or IP for the server.
 # Don't use `:all`, it's a meta role.
 
-role :app, %w{geessuser@104.236.7.68}
-role :web, %w{geessuser@104.236.7.68}
-role :db,  %w{geessuser@104.236.7.68}
+
 set :ssh_options, {
   keys: %w(~/.ssh/id_rsa),
   forward_agent: true,
