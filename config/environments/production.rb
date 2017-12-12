@@ -64,7 +64,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "conduit_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { :host => '104.236.7.68' }
+  config.action_mailer.default_url_options = { host: '104.236.7.68', port: 8000 }
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
@@ -96,7 +96,7 @@ Rails.application.configure do
    :enable_starttls_auto => true,
    :port           => 587,
    :address        => "smtp.gmail.com",
-   :domain         => "gmail.com",
+   :domain         => "104.236.7.68:8000",
    :user_name      => "doyoueverliftorduck@gmail.com",
    :password       => "lp5n4k3xD",
    :authentication => :plain
