@@ -2,7 +2,7 @@
 
 set :application, "place-api"
 set :branch, :master
-set :repo_url, 'git@github.com:akmerejf/place-api.git'
+set :repo_url, 'git@github.com:akmerejf/place-backend.git'
 
 # set :pty, true
 
