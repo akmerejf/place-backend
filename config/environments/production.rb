@@ -29,7 +29,7 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.default_url_options = { :host => 'localhost' }
+  config.action_mailer.default_url_options = { :host => '104.236.7.68' }
 
   config.action_mailer.raise_delivery_errors = true
 
@@ -59,12 +59,11 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.debug_exception_response_format = :default
-
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
    :enable_starttls_auto => true,
    :port           => 587,
    :address        => "smtp.gmail.com",
-   :domain         => "localhost:3000",
    :user_name      => "doyoueverliftorduck@gmail.com",
    :password       => "lp5n4k3xD",
    :authentication => :plain
