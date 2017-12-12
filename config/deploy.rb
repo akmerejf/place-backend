@@ -27,7 +27,7 @@ namespace :deploy do
     on roles(:web), in: :sequence, wait: 5 do
       within release_path do
         execute :bundle, "--without development test"
-        execute :rake, 'db:migrate'
+        # execute :rake, 'db:migrate'
       end
     end
   end

@@ -2,9 +2,11 @@
 
 Rails.application.routes.draw do
   scope :api, defaults: { format: :json } do
-    devise_for :users, controllers: { sessions: :sessions },
-                       path_names: { sign_in: :login }
-
+    devise_for :users, controllers: { sessions: :sessions, registrations: 'users/registrations' },
+                       path_names: { sign_in: :login },
+                       confirmations: 'confirmations',
+                       defaults: { format: :json }
+    get "/users/password/edit" => redirect("http://localhost:4200/#/redefinir_senha")
     resource :user, only: %i[show update]
 
     resources :profiles, param: :username, only: [:show] do

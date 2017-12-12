@@ -38,6 +38,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     model.instance_variable_get(media_original_filenames_var)[original_filename.to_sym]
   end
 
+  def default_url(*args)
+    "/images/" + [version_name, "rickmorty404.png"].compact.join('_')
+  end
+
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
